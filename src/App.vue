@@ -9,7 +9,7 @@
         <h1 class="slogan">Amoury Dating</h1>
       </div>
       <img src="./assets/images/slogan.png" alt="Center Image" class="center-image" />
-      <button v-if="isAndroid">
+      <button v-if="isAndroid" @click="downloadFile">
         <span>Android Download</span>
         <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h24v24H0z" fill="none"></path>
@@ -38,13 +38,21 @@ export default {
       videoURL: 'https://res.origin-safari.com/assets/fen/bg.mp4.js', // 背景图片的 URL
       // videoURL: 'https://res.origin-safari.com/assets/jue/bg.mp4.js', // 背景图片的 URL
       isAndroid: navigator.userAgent.toLowerCase().indexOf("android") > -1,
-      apkURL: 'your-apk-url',
+      apkURL: 'https://my5353.com/WdyO5',
     }
   },
   methods:{
-    androidDownload(){
-      window.open(this.apkURL, '_blank');
-      
+    downloadFile() {
+      let link = document.createElement('a');
+      link.href = this.apkURL;
+      link.setAttribute('download', 'amoury.apk');
+
+      // 触发点击
+      document.body.appendChild(link);
+      link.click();
+
+      // 清除该链接元素
+      document.body.removeChild(link);
     }
   }
 }
